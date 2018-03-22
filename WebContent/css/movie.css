@@ -1,0 +1,139 @@
+/*supplimentary css from the class grid lay out */
+
+.imgbaner {
+	grid-column: 1/-1;
+	/*background: url('images/bannerbg.png');*/
+	text-align: center;
+}
+
+#tmnt {
+	grid-column: 1/-1;
+	text-align: center;
+	font-weight: bold;
+	font-size: 32pt;
+	font-family: Tahoma, Verdana, sans-serif;
+	text-shadow: 3px 3px #999999;;
+	overflow: auto;
+}
+
+#howToPlay,h3{
+	font-size : 14pt;
+	color : white;
+}
+
+div.allitem {
+	grid-column: 1/-1;
+	display: grid;
+	grid-template-columns: 790px;
+	grid-template-rows: auto auto auto;
+	width: 800px;
+	height:400px;
+	margin-top:30px;
+	margin-left: auto;
+	margin-right: auto;
+	padding:2px;
+	border: 4px gray solid;
+	border-radius: 25px 25px;
+	overflow: auto;
+}
+
+#toped {
+	/*background: url('images/rbg.png');*/
+	font-size: 48pt;
+	color: red;
+	font-weight: bold;
+}
+
+toped.img {
+	size: 83px;
+	border-radius: 20px;
+}
+
+.nav1 {
+	grid-row: 1/2;
+	grid-column: 1/2;
+	left: 0px;
+}
+
+.coll {
+	grid-column: 1/2;
+}
+
+.colr {
+	margin-top: 0;
+	grid-column: 2/3;
+	margin-left: 2%;
+}
+
+.pg {
+	font-size: 8pt;
+	background-color: #E8DC9B;
+	border: 2px gray solid;
+	border-radius: 10px;
+	padding: 8px;
+}
+
+.pq img {
+	float: left;
+	clear: both;
+}
+
+.pg img {
+	float: left;
+	overflow: auto;
+}
+
+.generalOverView {
+	grid-column: 2/3;
+	grid-row: 1/2;
+	float: right;
+	background-color: #A2B964;
+	width: 250px;
+	font-size: 8pt;
+	font-family: Arial, sans-serif;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+#lst {
+	grid-row: 3/4;
+	grid-column: 1/-1;
+	background-color: #A2B964;
+	clear: both;
+	text-align: center;
+}
+
+.defn {
+	background-color: #A2B964;
+	width: 250px;
+	padding: 10pt;
+	font-size: 8pt;
+	font-family: Arial, sans-serif;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+.coloner {
+	grid-row: 2/3;
+	grid-column: 1/2;
+	padding: 10px;
+	display: grid;
+	grid-template-columns: auto auto;
+	border-radius: 20px;
+}
+
+/* modification the css possitioning with the grid*/
+.gridall {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-template: auto auto auto auto;
+	border-radius: 20px;
+}

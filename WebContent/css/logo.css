@@ -1,0 +1,31 @@
+/* docorating the logo custom tag using css by temesgen 21stMarch 
+taken from w3 */
+/*for the over all one */
+x-product {
+  display: inline-block;
+  float: left;
+  margin: 0.5em;
+  border-radius: 3px;
+  background: rgb(20, 5, 5);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  font-family: Helvetica, arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+	}
+
+/*for the image attribute */
+	x-product::shadow .product-img {
+  cursor: pointer;
+  background: #3d379f2066;
+  margin: 0.5em;
+}
+
+/*for the name and link */
+	x-product::shadow .product-name {
+  display: block;
+  text-align: center;
+  text-decoration:blink;
+  color: rgb(17, 32, 39);
+  border-top: 1px solid rgb(22, 7, 7);
+  font-weight: bold;
+  padding: 0.75em 0;
+	}
