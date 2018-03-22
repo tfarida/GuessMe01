@@ -1,5 +1,5 @@
 // Create a new object based of the HTMLElement prototype
-//Idea taken from w3 by temesgen on 21st of March 2018
+//Idea taken from google by temesgen on 21st of March 2018
 var XProductProto = Object.create(HTMLElement.prototype);
 
 // Set up the element.

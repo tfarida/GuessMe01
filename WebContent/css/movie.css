@@ -1,4 +1,4 @@
-/*supplimentary css from the class grid lay out */
+/*supplimentary css from the class grid lay out  by temesgen 21st March */
 
 .imgbaner {
 	grid-column: 1/-1;
@@ -112,14 +112,6 @@ toped.img {
 	box-sizing: border-box;
 	overflow: auto;
 }
-
-
-
-
-
-
-
-
 
 .coloner {
 	grid-row: 2/3;
