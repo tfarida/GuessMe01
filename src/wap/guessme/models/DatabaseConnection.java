@@ -45,7 +45,6 @@ public class DatabaseConnection {
 		} else if (instance.getConnection().isClosed()) {
 			instance = new DatabaseConnection();
 		}
-		//System.out.println("GET DB Connection!");
 		return instance;
 	}
 

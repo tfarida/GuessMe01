@@ -322,7 +322,8 @@ public class DatabaseService {
 
 	// end of titins
 
-//By Romie
+			
+//By Romie - Start
 // Get Gamer Login Details to play game with player2 - retrieve opponent's details
 	public GamerLog getGamerLoginDetails(int loginId) {
 	
