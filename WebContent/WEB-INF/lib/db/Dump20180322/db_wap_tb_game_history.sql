@@ -16,21 +16,24 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tb_game_player`
+-- Table structure for table `tb_game_history`
 --
 
-DROP TABLE IF EXISTS `tb_game_player`;
+DROP TABLE IF EXISTS `tb_game_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_game_player` (
+CREATE TABLE `tb_game_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `gameId` int(11) DEFAULT NULL,
   `gamerId` int(11) DEFAULT NULL,
-  `pickedNumber` int(11) DEFAULT NULL,
-  `winStatus` bit(1) DEFAULT NULL,
+  `guessedNumber` int(11) DEFAULT NULL,
+  `timeSpent` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_game_idx` (`gameId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_game_idx` (`gameId`),
+  KEY `fk_gamer_idx` (`gamerId`),
+  CONSTRAINT `fk_game` FOREIGN KEY (`gameId`) REFERENCES `tb_game` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gamer` FOREIGN KEY (`gamerId`) REFERENCES `tb_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -42,4 +45,4 @@ CREATE TABLE `tb_game_player` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-20 18:39:27
+-- Dump completed on 2018-03-22 16:27:56

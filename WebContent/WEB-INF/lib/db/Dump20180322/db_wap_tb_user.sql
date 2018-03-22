@@ -30,10 +30,17 @@ CREATE TABLE `tb_user` (
   `fullName` varchar(100) NOT NULL,
   `gender` varchar(1) NOT NULL,
   `createdAt` datetime NOT NULL,
+  `aboutMe` varchar(2000) DEFAULT NULL,
+  `secretNumber` int(11) DEFAULT NULL,
+  `aboutSecretNumber` varchar(2000) DEFAULT NULL,
+  `imageFile` longblob,
+  `imagePath` varchar(100) DEFAULT NULL,
+  `imageFileLength` varchar(50) DEFAULT NULL,
+  `lastModifiedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `emailAddress_UNIQUE` (`emailAddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -45,4 +52,4 @@ CREATE TABLE `tb_user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-20 18:39:28
+-- Dump completed on 2018-03-22 16:27:57
