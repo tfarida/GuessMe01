@@ -23,7 +23,7 @@ public class DatabaseConnection {
 	private Connection connection;
 	private String url = "jdbc:mysql://localhost:3306/db_wap";
 	private String username = "root";
-	private String password = "titin";
+	private String password = "password";
 
 	private DatabaseConnection() throws SQLException {
 		try {
@@ -52,10 +52,8 @@ public class DatabaseConnection {
 	public static void main(String args[]) {
 		try {
 			getInstance();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Get instance ??");
 			e.printStackTrace();
 		}
 

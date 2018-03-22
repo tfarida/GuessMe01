@@ -322,216 +322,220 @@ public class DatabaseService {
 
 	// end of titins
 
-			// retrieve opponent's details
-			public GamerLog getGamerLoginDetails(int loginId) {
+//By Romie
+// Get Gamer Login Details to play game with player2 - retrieve opponent's details
+	public GamerLog getGamerLoginDetails(int loginId) {
+	
+		GamerLog gamerLog = null;
+		try {
+			String gamerLgnSql = "select * from tb_user_login where userId=" + loginId;
+		stmt = conn.prepareStatement(gamerLgnSql);
+		ResultSet rs = stmt.executeQuery();
+	
+		while (rs.next()) {
+			// Retrieve by column name
+			int gamerId = Integer.parseInt(rs.getString("userId"));
+			int activeStatus = Integer.parseInt(rs.getString("activeStatus"));
+	
+			String sessionId = rs.getString("sessionId");
+			Date loginTime = rs.getDate("loginAt");
+			Date logoutTime = rs.getDate("logoutAt");
+	
+			gamerLog = new GamerLog();
+			gamerLog.setGamer(getGamerDetails(gamerId));
+			gamerLog.setActiveStatus(activeStatus);
+			gamerLog.setSessionId(sessionId);
+			gamerLog.setLoginAt(loginTime);
+			gamerLog.setLogoutAt(logoutTime);
+	
+		}
+		stmt.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return gamerLog;
+	}
 
-				GamerLog gamerLog = null;
-				try {
-					String gamerLgnSql = "select * from tb_user_login where userId=" + loginId;
-					stmt = conn.prepareStatement(gamerLgnSql);
-					ResultSet rs = stmt.executeQuery();
+//Get Gamer or (User) details to start a game 
+	public Gamer getGamerDetails(int gamerId) {
 
-					while (rs.next()) {
-						// Retrieve by column name
-						int gamerId = Integer.parseInt(rs.getString("userId"));
-						int activeStatus = Integer.parseInt(rs.getString("activeStatus"));
+		Gamer opponent = null;
+		String gamerSql = "select * from tb_user where id=" + gamerId;
+		try {
+			stmt = conn.prepareStatement(gamerSql);
 
-						String sessionId = rs.getString("sessionId");
-						Date loginTime = rs.getDate("loginAt");
-						Date logoutTime = rs.getDate("logoutAt");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int id = Integer.parseInt(rs.getString("id"));
+				String name = rs.getString("gamerName");
+				String email = rs.getString("emailAddress");
+				String password = rs.getString("password");
+				String fullName = rs.getString("fullName");
+				String gender = rs.getString("gender");
+				Date joinedDate = rs.getDate("createdAt");
 
-						gamerLog = new GamerLog();
-						gamerLog.setGamer(getGamerDetails(gamerId));
-						gamerLog.setActiveStatus(activeStatus);
-						gamerLog.setSessionId(sessionId);
-						gamerLog.setLoginAt(loginTime);
-						gamerLog.setLogoutAt(logoutTime);
+				opponent = new Gamer(id, name, email, password, fullName, gender, joinedDate);
 
-					}
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return gamerLog;
 			}
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-			public Gamer getGamerDetails(int gamerId) {
+		return opponent;
+	}
 
-				Gamer opponent = null;
-				String gamerSql = "select * from tb_user where id=" + gamerId;
-				try {
-					stmt = conn.prepareStatement(gamerSql);
+	//Create a new player 
+	public GamePlayer getPlayerDetails(int gamerId) {
 
-					ResultSet rs = stmt.executeQuery();
-					while (rs.next()) {
-						int id = Integer.parseInt(rs.getString("id"));
-						String name = rs.getString("gamerName");
-						String email = rs.getString("emailAddress");
-						String password = rs.getString("password");
-						String fullName = rs.getString("fullName");
-						String gender = rs.getString("gender");
-						Date joinedDate = rs.getDate("createdAt");
+		GamePlayer player2 = null;
+		String gamerSql = "select * from tb_user where id=" + gamerId;
+		try {
+			stmt = conn.prepareStatement(gamerSql);
 
-						opponent = new Gamer(id, name, email, password, fullName, gender, joinedDate);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				int id = Integer.parseInt(rs.getString("id"));
+				String name = rs.getString("gamerName");
+				String email = rs.getString("emailAddress");
+				String password = rs.getString("password");
+				String fullName = rs.getString("fullName");
+				String gender = rs.getString("gender");
+				Date joinedDate = rs.getDate("createdAt");
 
-					}
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Gamer opponent = new Gamer(id, name, email, password, fullName, gender, joinedDate);
+				player2 = new GamePlayer();
+				player2.setGamer(opponent);
 
-				return opponent;
 			}
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return player2;
+	}
 
-			public GamePlayer getPlayerDetails(int gamerId) {
+	// Start a new game and track record
+	public Game startAGame(GamePlayer player1, GamePlayer player2) {
 
-				GamePlayer player2 = null;
-				String gamerSql = "select * from tb_user where id=" + gamerId;
-				try {
-					stmt = conn.prepareStatement(gamerSql);
+		System.out.println("Let's start a game!");
+		Game game = new Game();
+		
+		// game.setStartTime(CLocalDateTime.now());
+		//Two players can play a single game at the same time.
+		game.addPlayer(player2);
+		game.addPlayer(player2);
+		return game;
+	}
+	//Insert each move into Game History Table
+	public int insertGameHistory(Game game, int guessedNo, long timeTaken) {
+		int retInt = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			int gameId = game.getGameId();
 
-					ResultSet rs = stmt.executeQuery();
-					while (rs.next()) {
-						int id = Integer.parseInt(rs.getString("id"));
-						String name = rs.getString("gamerName");
-						String email = rs.getString("emailAddress");
-						String password = rs.getString("password");
-						String fullName = rs.getString("fullName");
-						String gender = rs.getString("gender");
-						Date joinedDate = rs.getDate("createdAt");
+			int gamerId = game.getPlayers().get(0).getGamer().getId();
 
-						Gamer opponent = new Gamer(id, name, email, password, fullName, gender, joinedDate);
-						player2 = new GamePlayer();
-						player2.setGamer(opponent);
+			System.out.println("History details : " + gameId + ", " + gamerId + ", " + guessedNo + ". " + timeTaken);
 
-					}
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return player2;
+			String insertGmHisQry = "insert into tb_game_history(gameId, gamerId, guessedNumber, timeSpent)"
+					+ "values ('" + gameId + "', '" + gamerId + "', '" + guessedNo + "', '" + timeTaken + "') ";
+
+			retInt = stmt.executeUpdate(insertGmHisQry, Statement.RETURN_GENERATED_KEYS);
+			stmt.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retInt;
+	}
+
+	public int createNewGame(Game game, LocalDateTime startTime) {
+		int retInt = 0;
+		int generatedKey = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			// int gameId = game.getGameId();
+			SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+			System.out.println("startime and endTime" + startTime);
+			String createGmQry = "insert into tb_game(startTime) " + "values ('"
+					+ f.format(Date.valueOf(startTime.toLocalDate())) + "') ";
+
+			stmt.executeUpdate(createGmQry, Statement.RETURN_GENERATED_KEYS);
+
+			ResultSet rs = stmt.getGeneratedKeys();
+
+			if (rs.next()) {
+				generatedKey = rs.getInt(1);
 			}
+			System.out.println(" generatedKey : " + generatedKey);
+			System.out.println("Game id : " + retInt);
+			stmt.close();
 
-			// Start a new game and track record
-			public Game startAGame(GamePlayer player1, GamePlayer player2) {
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-				System.out.println("Let's start a game!");
-				Game game = new Game();
+		return generatedKey;
+	}
+	//Insert new player to DB
+	public int createNewPlayer(Game game) {
+		int retInt = 0;
+		try {
+			for (int i = 0; i < 2; i++) {
+				Statement stmt = conn.createStatement();
+				int gameId = game.getGameId();
+				int gamerId = game.getPlayers().get(i).getGamer().getId();
 
-				// game.setStartTime(CLocalDateTime.now());
-				game.addPlayer(player2);
-				game.addPlayer(player2);
-				return game;
+				String createPlayer = "insert into tb_game_player(gameId,gamerId) " + "values ('" + gameId + "','"
+						+ gamerId + "')";
+
+				retInt = stmt.executeUpdate(createPlayer, Statement.RETURN_GENERATED_KEYS);
+
+				System.out.println("Game id : " + retInt);
 			}
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-			public int insertGameHistory(Game game, int guessedNo, long timeTaken) {
-				int retInt = 0;
-				try {
-					Statement stmt = conn.createStatement();
-					int gameId = game.getGameId();
+		return retInt;
+	}
+	//JSON object to String conversion
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static String toJson(Object obj) {
 
-					int gamerId = game.getPlayers().get(0).getGamer().getId();
+		ObjectMapper mapper = new ObjectMapper();
 
-					System.out.println("History details : " + gameId + ", " + gamerId + ", " + guessedNo + ". " + timeTaken);
+		String jsonInString = "";
+		try {
+			jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(jsonInString);
+		return jsonInString;
+	}
 
-					String insertGmHisQry = "insert into tb_game_history(gameId, gamerId, guessedNumber, timeSpent)"
-							+ "values ('" + gameId + "', '" + gamerId + "', '" + guessedNo + "', '" + timeTaken + "') ";
-
-					retInt = stmt.executeUpdate(insertGmHisQry, Statement.RETURN_GENERATED_KEYS);
-					stmt.close();
-
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return retInt;
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static JSONArray toJson(List list) {
+		JSONArray jsonArray = new JSONArray();
+		for (Object obj : list) {
+			if (obj instanceof List) {
+				jsonArray.add(toJson((List) obj));
+			} else {
+				jsonArray.add(obj);
 			}
-
-			public int createNewGame(Game game, LocalDateTime startTime) {
-				int retInt = 0;
-				int generatedKey = 0;
-				try {
-					Statement stmt = conn.createStatement();
-					// int gameId = game.getGameId();
-					SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-					System.out.println("startime and endTime" + startTime);
-					String createGmQry = "insert into tb_game(startTime) " + "values ('"
-							+ f.format(Date.valueOf(startTime.toLocalDate())) + "') ";
-
-					stmt.executeUpdate(createGmQry, Statement.RETURN_GENERATED_KEYS);
-
-					ResultSet rs = stmt.getGeneratedKeys();
-
-					if (rs.next()) {
-						generatedKey = rs.getInt(1);
-					}
-					System.out.println(" generatedKey : " + generatedKey);
-					System.out.println("Game id : " + retInt);
-					stmt.close();
-
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				return generatedKey;
-			}
-
-			public int createNewPlayer(Game game) {
-				int retInt = 0;
-				try {
-					for (int i = 0; i < 2; i++) {
-						Statement stmt = conn.createStatement();
-						int gameId = game.getGameId();
-						int gamerId = game.getPlayers().get(i).getGamer().getId();
-
-						String createPlayer = "insert into tb_game_player(gameId,gamerId) " + "values ('" + gameId + "','"
-								+ gamerId + "')";
-
-						retInt = stmt.executeUpdate(createPlayer, Statement.RETURN_GENERATED_KEYS);
-
-						System.out.println("Game id : " + retInt);
-					}
-					stmt.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				return retInt;
-			}
-
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			public static String toJson(Object obj) {
-
-				ObjectMapper mapper = new ObjectMapper();
-
-				String jsonInString = "";
-				try {
-					jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.println(jsonInString);
-				return jsonInString;
-			}
-
-			@SuppressWarnings({ "rawtypes", "unchecked" })
-			public static JSONArray toJson(List list) {
-				JSONArray jsonArray = new JSONArray();
-				for (Object obj : list) {
-					if (obj instanceof List) {
-						jsonArray.add(toJson((List) obj));
-					} else {
-						jsonArray.add(obj);
-					}
-				}
-				return jsonArray;
-			}
+		}
+		return jsonArray;
+	}
 
 }

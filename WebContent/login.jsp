@@ -39,8 +39,8 @@ other used css files by temesgen on 19th march -->
 	<!-- use of custom tags for the logo we use a shadow dome here
 	 code by temesgen 21st of march 	 -->		
 				
-					<li><x-logo data-name="" data-img="images/logo2.png"
-							data-url="HowToPlay.jsp"></x-logo></li>
+					<li><a href="#"><x-logo data-name="" data-img="images/logo2.png"
+							data-url="HowToPlay.jsp"></x-logo></a></li>
 					<li class="active"><a href="login.jsp">Home</a></li>
 					<li><a href="HowToPlay.jsp">How To play</a></li>
 					<li><a href="aboutUs.jsp">About Us</a></li>
