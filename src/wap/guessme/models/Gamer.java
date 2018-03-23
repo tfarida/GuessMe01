@@ -8,7 +8,7 @@ import java.util.Date;
  * @author titin: Desription: bean to model app user
  *
  */
-// Written by Titin on 20th March - Model Class
+// Written by Titin on 20th March 2018- Model Class
 public class Gamer {
 	private int id;
 	private String gamerName;

@@ -19,7 +19,7 @@ import wap.guessme.utilities.AppHelper;
  * Servlet implementation class Registration
  */
 
-// Written by Titin on March 21st - Register Servlet
+// Written by Titin on March 21st 2018 - Register Servlet
 
 @WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {

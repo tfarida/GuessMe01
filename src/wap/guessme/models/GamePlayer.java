@@ -6,7 +6,7 @@ package wap.guessme.models;
  * @author titin: Desription: bean to model game player;
  *
  */
-// Written by Titin on 20th March - Model Class
+// Written by Titin on 20th March 2018- Model Class
 public class GamePlayer {
 	private Game game;
 	private Gamer gamer;

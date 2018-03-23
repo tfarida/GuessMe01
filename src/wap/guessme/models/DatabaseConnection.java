@@ -16,7 +16,7 @@ import java.util.Calendar;
  * @author romie
  */
 
-//Written by Romie on Mar 20- singleton class for DB connection
+//Written by Romie on Mar 20 2018 -  singleton class for DB connection
 public class DatabaseConnection {
 
 	private static DatabaseConnection instance;

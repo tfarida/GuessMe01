@@ -18,7 +18,7 @@ import wap.guessme.models.Gamer;
  * Servlet implementation class LogoutServlet
  */
 
-// Written by Titin on March 21st - Logout Servlet
+// Written by Titin on March 21st 2018 - Logout Servlet
 
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {

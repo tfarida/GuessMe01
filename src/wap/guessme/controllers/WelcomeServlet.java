@@ -23,7 +23,7 @@ import wap.guessme.models.GamerLog;
  * Servlet implementation class WelcomeServlet
  */
 
-// Written by Titin on March 21st - Welcome Servlet
+// Written by Titin on March 21st 2018 - Welcome Servlet
 
 @WebServlet("/welcome")
 public class WelcomeServlet extends HttpServlet {

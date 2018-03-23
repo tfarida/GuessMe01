@@ -1,6 +1,8 @@
-// Create a new object based of the HTMLElement prototype
-//Idea taken from google by temesgen on 21st of March 2018
+// Create a new object based of the HTMLElement prototype Idea taken from google by temesgen on 21st of March 2018
 var XProductProto = Object.create(HTMLElement.prototype);
+
+"use strict";
+//Written by Temesgan on - 21st March 2018 
 
 // Set up the element.
 XProductProto.createdCallback = function() {

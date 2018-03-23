@@ -8,7 +8,7 @@ import java.util.Date;
  * @author titin: Desription: bean to model user login/logout log
  *
  */
-// Written by Titin on 20th March - Model Class
+// Written by Titin on 20th March 2018- Model Class
 public class GamerLog {
 	private int id;
 	private Gamer gamer;

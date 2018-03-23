@@ -1,12 +1,11 @@
-// Written by Romie on - 19th March for Game Services calls
+// Written by Romie on - 19th March 2018 for Game Services calls
 
 "use strict";
 var counter = 0;				//A counter to check how many moves done by user.
 
 $(function() {
 	
-	// Written by Romie on - 19th March - 
-	
+	// Written by Romie on - 19th March 2018
 	// Updated by Titin to load online users every 2 seconds. 
 	$(".btnActiveGamer").click(getPlayer); 						// titin: for first load , maybe need it
 	$(document).on('click', ".btnActiveGamer", getPlayer); 		// titin: after ajax  reload and update activeGamers list

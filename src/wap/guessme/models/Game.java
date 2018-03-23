@@ -8,7 +8,7 @@ import java.util.*;
  * @author titin: Desription: bean to model game data
  *
  */
-// Written by Titin on 20th March - Model Class
+// Written by Titin on 20th 2018 March - Model Class
 public class Game {
 	int gameId;
 	Date startTime;

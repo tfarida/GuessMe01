@@ -27,7 +27,7 @@ import wap.guessme.models.GameService;
 import wap.guessme.models.Gamer;
 import wap.guessme.models.GamerLog;
 
-//Written by Romie on March 19 - 22 - Servlet class for game control
+//Written by Romie on March 19/22 2018- Servlet class for game control
 
 @WebServlet("/GameSolver")
 public class GameSolver extends HttpServlet {

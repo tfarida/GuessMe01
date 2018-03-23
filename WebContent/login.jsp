@@ -19,8 +19,8 @@
 
 
 <!-- heading ditails and link to bootstrap frame work and 
-other used css files by temesgen on 19th march -->
-<!-- Updated by team (Titin/Romie/Teme) during project implementation -->
+other used css files by temesgen on 19th march 2018-->
+<!-- Updated by team (Titin/Romie/Temesgan) during project implementation -->
 
 
 </head>

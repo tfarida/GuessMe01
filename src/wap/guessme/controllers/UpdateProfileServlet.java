@@ -19,7 +19,7 @@ import wap.guessme.utilities.AppHelper;
  * Servlet implementation class UpdateProfileServlet
  */
 
-// Written by Titin on March 21st - Update Profile Servlet
+// Written by Titin on March 21st 2018 - Update Profile Servlet
 
 @WebServlet("/UpdateProfile")
 public class UpdateProfileServlet extends HttpServlet {

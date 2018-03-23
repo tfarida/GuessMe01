@@ -18,7 +18,7 @@ import wap.guessme.models.Gamer;
  * Servlet implementation class LoginServlet
  */
 
-// Written by Titin on March 21st for Login
+// Written by Titin on March 21st 2018 for Login
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -32,7 +32,7 @@ import wap.guessme.utilities.AppHelper;
  *
  */
 
-//Written by Romie & Titin on Mar 20- for DB processing
+//Written by Romie & Titin on Mar 20 2018- for DB processing
 @ApplicationPath("/api")
 public class DatabaseService {
 

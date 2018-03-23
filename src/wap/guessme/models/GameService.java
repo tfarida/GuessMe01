@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-//Written by Romie on March 19 - 22 - Game Service class for game control
+//Written by Romie on March 19/22 2018 - Game Service class for game control
 
 public class GameService {
 	private int numberToGuess;

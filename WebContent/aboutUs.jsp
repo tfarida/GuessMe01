@@ -24,9 +24,9 @@
 <body class="bg" background="images/bg_img.jpg">
 
 <!-- heading ditails and link to bootstrap frame work and 
-other used css files by temesgen on 19th march -->
+other used css files by temesgen on 19th march 2018-->
 <!--navigation menu bar by temesgen on first day-->
-<!-- Updated by team (Titin/Romie/Teme) during project implementation -->
+<!-- Updated by team (Titin/Romie/Temesgan) during project implementation -->
 
 	<nav class="navbar navbar-inverse headerTop">
 		<div class="container-fluid">
