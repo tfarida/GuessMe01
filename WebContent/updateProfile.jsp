@@ -14,6 +14,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="docorate.css">
 <script src="javascript/ajax.js"></script>
+
+<!-- heading ditails and link to bootstrap frame work and 
+other used css files by temesgen on 19th march -->
+<!-- Updated by team (Titin/Romie/Teme) during project implementation -->
+
 </head>
 <body class="bg" background='images/img3.jpg'>
 
@@ -25,7 +30,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				
+
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
@@ -45,10 +50,8 @@
 					<p>
 						<a href="#">${gamer.fullName}</a>
 					</p>
-
 				</div>
 				<div class="well"></div>
-
 				<p>
 					<a href="#">Game 1</a>
 				</p>
@@ -64,43 +67,39 @@
 					<div class="col-sm-12">
 						<div class="panel panel-default text-left">
 							<div class="panel-body">
-								<p style="color:green; font-weight:bold">My Profile</p>
-								
-								<p >Gamer Name: ${gamer.gamerName} </p>
-								<p >Email Address: ${gamer.emailAddress} </p>
-								
-								<form method="POST" action="UpdateProfile">
-								<p> Full Name: <input type="text" name="fullName" value="${gamer.fullName}" /></p>
-								<!-- <p> Gender: 
-								<input type="radio"  name="gender" value="M" required><label for="gender"><b>male</b></label>
-								<input type="radio"  name="gender" value="F" required><label for="gender"><b>female</b></label>
-								
-								</p> -->
-								<p> About Me:
-								<textarea  name="aboutMe" placeholder="Write something.." style="height:200px">${gamer.aboutMe}</textarea> 
-								<%-- <input type="text" name="aboutMe" value="${gamer.aboutMe}" /> --%>
-								</p>
-								<p> My Secret Number: <input type="text" name="mySN" value="${gamer.secretNumber}" maxlength="4" placeholder="Enter 4 unique digits"  pattern="^(?:([0-9])(?!.*\\1)){4}$" /></p>
-								<p> About My Secret Number: 
-								<textarea  name="aboutMySN" placeholder="Write something.." style="height:200px">${gamer.aboutSecretNumber}</textarea> 
-								<%-- <input type="text" name="aboutMySN" value="${gamer.aboutSecretNumber}" /></p> --%>
-								<!-- <p> Upload Profile Image: <input type="file" name="profileImage" size="500"/></p> -->
-								
-								<p> <input type="submit" value="Update Profile" /></p>
-								</form>
-								
-								
+								<p style="color: green; font-weight: bold">My Profile</p>
 
+								<p>Gamer Name: ${gamer.gamerName}</p>
+								<p>Email Address: ${gamer.emailAddress}</p>
+
+								<form method="POST" action="UpdateProfile">
+									<p>
+										Full Name: <input type="text" name="fullName"
+											value="${gamer.fullName}" />
+									</p>
+									<p>
+										About Me:
+										<textarea name="aboutMe" placeholder="Write something.."
+											style="height: 200px">${gamer.aboutMe}</textarea>
+									</p>
+									<p>
+										My Secret Number: <input type="text" name="mySN"
+											value="${gamer.secretNumber}" maxlength="4"
+											placeholder="Enter 4 unique digits"
+											pattern="^(?:([0-9])(?!.*\\1)){4}$" />
+									</p>
+									<p>
+										About My Secret Number:
+										<textarea name="aboutMySN" placeholder="Write something.."
+											style="height: 200px">${gamer.aboutSecretNumber}</textarea>
+									<p>
+										<input type="submit" value="Update Profile" />
+									</p>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
-			
-
-				
-
-				
-
 			</div>
 			<div class="col-sm-3 well" id="rightSide">
 				<div class="thumbnail">
@@ -115,10 +114,6 @@
 			</div>
 		</div>
 	</div>
-<!--
- <video class="fullscreen" autoplay loop>
-  <source src="images/welcome.mp4" type="video/mp4">
-</video>
-  -->
+
 </body>
 </html>

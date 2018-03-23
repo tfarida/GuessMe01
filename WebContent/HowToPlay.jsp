@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- heading ditails and link to bootstrap frame work and 
-other used css files by temesgen on 19th march -->
-
 <title>Guess Me!!</title>
 <link rel="shortcut icon" href="images/logo2.png"/>
 <meta charset="utf-8">
@@ -29,6 +25,11 @@ other used css files by temesgen on 19th march -->
 <link rel="stylesheet" href="css/docorate.css">
 <script src="javascript/logo.js"></script>
 <link rel="stylesheet" href="css/logo.css">
+
+<!-- heading ditails and link to bootstrap frame work and 
+other used css files by temesgen on 19th march -->
+<!-- Updated by team (Titin/Romie/Teme) during project implementation -->
+
 
 
 </head>
