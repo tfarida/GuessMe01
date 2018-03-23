@@ -1,3 +1,4 @@
+"use strict";
 $(function(){
 	/**
 	 * by titin
@@ -13,22 +14,12 @@ $(function(){
 		  } else {
 			  $('#passwordStatus').html("Passwords don't match!!").css('color', 'red');
 			 // $('#btnSubmit').attr('disabled', 'disabled');
+			  $("#btnSubmit").attr("disabled", true);
 		  }
 		    
 	});
 	
-	/*$('input[type=submit]').on('click', validate);
-	function validate() {
-	  var password1 = $("#password").val();
-	  var password2 = $("#confirmPassword").val();
-
-	    if(password1 == password2) {
-	       $("#passwordStatus").text("Matching");        
-	    }
-	    else {
-	        $("#passwordStatus").text("Not Matching");  
-	    } 
-	}*/
+	
 	
 	
 });

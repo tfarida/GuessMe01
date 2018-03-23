@@ -24,7 +24,7 @@ other used css files by temesgen on 19th march -->
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/docorate.css">
 <script src="javascript/logo.js"></script>
-<script src="javascript/register.js"></script>
+<script src="javascript/register.js"></script> 
 <link rel="stylesheet" href="css/logo.css">
 
 </head>
