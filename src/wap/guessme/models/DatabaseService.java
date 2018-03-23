@@ -159,7 +159,6 @@ public class DatabaseService {
 	// titin: getOnlineGamers in JSON format
 	public JSONObject[] getOnlineGamers_JSON(List<GamerLog> data) {
 		JSONObject[] results = new JSONObject[data.size()];
-		System.out.println(" data.size() = " + data.size());
 		for (int i = 0; i < data.size(); i++) {
 			JSONObject res = new JSONObject();
 			res.put("id", data.get(i).getId());
