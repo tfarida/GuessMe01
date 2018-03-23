@@ -46,7 +46,6 @@ public class DatabaseService {
 		try {
 			connection = DatabaseConnection.getInstance();
 			conn = connection.getConnection();
-			System.out.println("Connection successful.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,8 +120,6 @@ public class DatabaseService {
 					+ " , L.userId, U.gamerName, U.emailAddress, U.password, U.fullName, U.gender, U.createdAt   "
 					+ " FROM tb_user_login L " + " left join tb_user U on L.userId = U.id "
 					+ " where L.activeStatus = 1  AND L.userId != '" + gm.getId() + "'";
-			// " group by L.userId ";
-			System.out.println("QUERY: " + QUERY);
 			ResultSet rs = statement.executeQuery(QUERY);
 			while (rs.next()) {
 				Gamer gamer;
@@ -130,7 +127,6 @@ public class DatabaseService {
 				int id = rs.getInt("userId");
 				String gamerName = rs.getString("gamerName");
 				String emailAddress = rs.getString("emailAddress");
-				// String password = rs.getString("password");
 				String fullName = rs.getString("fullName");
 				String gender = rs.getString("gender");
 				Date createdAt = rs.getDate("createdAt");
@@ -234,7 +230,6 @@ public class DatabaseService {
 					+ gamerName + "','" + emailAddress + "','" + password + "', '" + fullName + "',	'" + gender + "', '"
 					+ AppHelper.getDateNow(createdAt) + "')";
 
-			System.out.print(QUERY);
 			retInt = statement.executeUpdate(QUERY, Statement.RETURN_GENERATED_KEYS);
 			statement.close();
 
@@ -266,10 +261,8 @@ public class DatabaseService {
 					+ ", lastModifiedAt = '"+AppHelper.getDateNow()+"' "//10
 					+ " WHERE id = '"+gamer.getId()+"' "; //12
 			
-			System.out.println("QUERY: "+QUERY);
 			statement = conn.createStatement();
 			statement.executeUpdate(QUERY);
-			System.out.println("DONE: "+QUERY);
 			statement.close();
 		} catch (SQLException ex) {
 			System.err.println("SQLQueryException: " + ex.getMessage());

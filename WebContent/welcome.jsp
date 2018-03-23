@@ -116,7 +116,7 @@ other used css files by temesgen on 19th march 2018-->
 							
 							<div class="well toBeAdd">
 								<input type="text" min="0" step="1" name="myGuess" maxlength="4"
-									class="form-control" id="myGuess" placeholder="Enter 4 digits"
+									class="form-control" id="myGuess" placeholder="Enter 4 unique digits"
 									pattern="/^(?:([0-9])(?!.*\\1)){4}$/" required />
 								<button type="submit" id="btnSubmit" class="btn btn-default">
 									Check</button>
