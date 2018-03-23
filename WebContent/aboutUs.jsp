@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Guess Me Game!!</title>
 <link rel="shortcut icon" href="images/logo2.png"/>
-<!-- heading ditails and link to bootstrap frame work and 
-other used css files by temesgen on 19th march -->
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -27,7 +23,10 @@ other used css files by temesgen on 19th march -->
 </head>
 <body class="bg" background="images/bg_img.jpg">
 
+<!-- heading ditails and link to bootstrap frame work and 
+other used css files by temesgen on 19th march -->
 <!--navigation menu bar by temesgen on first day-->
+<!-- Updated by team (Titin/Romie/Teme) during project implementation -->
 
 	<nav class="navbar navbar-inverse headerTop">
 		<div class="container-fluid">

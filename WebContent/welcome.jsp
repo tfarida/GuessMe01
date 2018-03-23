@@ -3,9 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="ct"%>
 <html lang="en">
 <head>
-<!-- heading ditails and link to bootstrap frame work and 
-other used css files by temesgen on 19th march -->
-
 <title>Guess Me::Welcome</title>
 <link rel="shortcut icon" href="images/logo2.png"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +20,10 @@ other used css files by temesgen on 19th march -->
 <script src="javascript/logo.js"></script>
 <link rel="stylesheet" href="css/logo.css">
 <script src="javascript/ajax.js"></script>
+
+<!-- heading ditails and link to bootstrap frame work and 
+other used css files by temesgen on 19th march -->
+<!-- Updated by team (Titin/Romie/Teme) during project implementation -->
 
 </head>
 <body class="bg" background="images/bg_img.jpg">

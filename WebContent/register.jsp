@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-	
-<!-- heading ditails and link to bootstrap frame work and 
-other used css files by temesgen on 19th march -->
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -26,6 +20,10 @@ other used css files by temesgen on 19th march -->
 <script src="javascript/logo.js"></script>
 <script src="javascript/register.js"></script> 
 <link rel="stylesheet" href="css/logo.css">
+
+<!-- heading ditails and link to bootstrap frame work and 
+other used css files by temesgen on 19th march -->
+<!-- Updated by team (Titin/Romie/Teme) during project implementation -->
 
 </head>
 <body class="bg" background="images/bg_img.jpg" >
