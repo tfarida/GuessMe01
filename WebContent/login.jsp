@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- heading ditails and link to bootstrap frame work and 
+other used css files by temesgen on 19th march -->
+
 <title>Guess Me Game!!</title>
 <link rel="shortcut icon" href="images/logo2.png"/>
 <meta charset="utf-8">
@@ -16,12 +19,6 @@
 <link rel="stylesheet" href="css/docorate.css">
 <script src="javascript/logo.js"></script>
 <link rel="stylesheet" href="css/logo.css">
-
-
-<!-- heading ditails and link to bootstrap frame work and 
-other used css files by temesgen on 19th march 2018-->
-<!-- Updated by team (Titin/Romie/Temesgan) during project implementation -->
-
 
 </head>
 <body class="bg" background="images/bg_img.jpg" repeat-y>
@@ -42,8 +39,8 @@ other used css files by temesgen on 19th march 2018-->
 	<!-- use of custom tags for the logo we use a shadow dome here
 	 code by temesgen 21st of march 	 -->		
 				
-					<li><a href="#"><x-logo data-name="" data-img="images/logo2.png"
-							data-url="HowToPlay.jsp"></x-logo></a></li>
+					<li><x-logo data-name="" data-img="images/logo2.png"
+							data-url="HowToPlay.jsp"></x-logo></li>
 					<li class="active"><a href="login.jsp">Home</a></li>
 					<li><a href="HowToPlay.jsp">How To play</a></li>
 					<li><a href="aboutUs.jsp">About Us</a></li>
