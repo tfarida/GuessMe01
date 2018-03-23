@@ -4,18 +4,18 @@ import java.util.Date;
 
 /**
  * **
- * @author titin: 
- * Desription: bean to model app user
+ * 
+ * @author titin: Desription: bean to model app user
  *
  */
-
+// Written by Titin on 20th March - Model Class
 public class Gamer {
 	private int id;
-	private String gamerName;	
+	private String gamerName;
 	private String emailAddress;
 	private String password;
 	private String fullName;
-	private String gender;	
+	private String gender;
 	private Date createdAt;
 	private String aboutMe;
 	private int secretNumber;
@@ -23,48 +23,49 @@ public class Gamer {
 	private String imagePath;
 	private String imageFileLength;
 	private Date lastModifiedAt;
-	
-	
+
 	public Gamer() {
-		
+
 	}
-	
+
 	public void setDefault() {
 		this.aboutMe = "";
-		this.secretNumber= 0;
-		this.aboutSecretNumber= "";
-		this.imagePath= "";
-		this.imageFileLength= "";
+		this.secretNumber = 0;
+		this.aboutSecretNumber = "";
+		this.imagePath = "";
+		this.imageFileLength = "";
 	}
-	
-	public Gamer(int id, String gamerName, String emailAddress, String password, String fullName, String gender, Date createdAt) {
+
+	public Gamer(int id, String gamerName, String emailAddress, String password, String fullName, String gender,
+			Date createdAt) {
 		this.id = id;
 		this.gamerName = gamerName;
 		this.emailAddress = emailAddress;
 		this.password = password;
 		this.fullName = fullName;
-		this.gender = gender;	
-		this.createdAt = createdAt;	
+		this.gender = gender;
+		this.createdAt = createdAt;
 		setDefault();
 	}
-	
-	public Gamer(String gamerName, String emailAddress, String password, String fullName, String gender, Date createdAt) {
+
+	public Gamer(String gamerName, String emailAddress, String password, String fullName, String gender,
+			Date createdAt) {
 		this.gamerName = gamerName;
 		this.emailAddress = emailAddress;
 		this.password = password;
 		this.fullName = fullName;
-		this.gender = gender;	
-		this.createdAt = createdAt;		
+		this.gender = gender;
+		this.createdAt = createdAt;
 		setDefault();
 	}
-	
+
 	public Gamer(String gamerName, String emailAddress, String fullName, String gender, Date createdAt) {
 		this.gamerName = gamerName;
 		this.emailAddress = emailAddress;
 		this.password = password;
 		this.fullName = fullName;
-		this.gender = gender;	
-		this.createdAt = createdAt;		
+		this.gender = gender;
+		this.createdAt = createdAt;
 	}
 
 	public int getId() {
@@ -170,11 +171,5 @@ public class Gamer {
 	public void setLastModifiedAt(Date lastModifiedAt) {
 		this.lastModifiedAt = lastModifiedAt;
 	}
-
-	
-
-	
-	
-	
 
 }
