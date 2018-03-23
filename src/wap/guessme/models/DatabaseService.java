@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -54,8 +53,8 @@ public class DatabaseService {
 		}
 	}
 
-	// start titins
-	// titin:
+	// Written by Titin
+	// Start
 	public boolean checkDuplicateGamer(String emailAddress, String gamerName) {
 		boolean sameRecordFound = false;
 		try {
@@ -63,57 +62,55 @@ public class DatabaseService {
 			QUERY = "select * from tb_user where emailAddress = '" + emailAddress + "' OR gamerName = '" + gamerName
 					+ "'";
 			ResultSet rs = statement.executeQuery(QUERY);
-			int numRecords = rs.getFetchSize();
 			if (rs.next()) {
 				return true;
 			}
 			statement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return sameRecordFound;
 	}
 
 	// titin: get user info
-			public Gamer getGamer(String emailAddressorGamerName) {
-				Gamer gamer = null;
-				try {
-					statement = conn.createStatement();
-					QUERY = "select * from tb_user where emailAddress = '" + emailAddressorGamerName + "' OR gamerName = '"
-							+ emailAddressorGamerName + "'";
-					ResultSet rs = statement.executeQuery(QUERY);
-					if (rs.next()) {
-						int id = rs.getInt("id");
-						String gamerName = rs.getString("gamerName");
-						String emailAddress = rs.getString("emailAddress");
-						String password = rs.getString("password");
-						String fullName = rs.getString("fullName");
-						String gender = rs.getString("gender");
-						Date createdAt = rs.getDate("createdAt");
-						gamer = new Gamer(gamerName, emailAddress, password, fullName, gender, createdAt);
-						gamer.setId(id);
-						String aboutMe = rs.getString("aboutMe");;
-						int secretNumber = rs.getInt("secretNumber");
-						String aboutSecretNumber =   rs.getString("aboutSecretNumber");
-						Date lastModifiedAt = rs.getDate("lastModifiedAt");
-						gamer.setAboutMe(aboutMe);
-						gamer.setSecretNumber(secretNumber);
-						gamer.setAboutSecretNumber(aboutSecretNumber);
-						gamer.setLastModifiedAt(lastModifiedAt);
-						
-						// System.out.println("Records found");
-					} else {
-						// System.out.println("No records found");
-					}
-					statement.close();
+	public Gamer getGamer(String emailAddressorGamerName) {
+		Gamer gamer = null;
+		try {
+			statement = conn.createStatement();
+			QUERY = "select * from tb_user where emailAddress = '" + emailAddressorGamerName + "' OR gamerName = '"
+					+ emailAddressorGamerName + "'";
+			ResultSet rs = statement.executeQuery(QUERY);
+			if (rs.next()) {
+				int id = rs.getInt("id");
+				String gamerName = rs.getString("gamerName");
+				String emailAddress = rs.getString("emailAddress");
+				String password = rs.getString("password");
+				String fullName = rs.getString("fullName");
+				String gender = rs.getString("gender");
+				Date createdAt = rs.getDate("createdAt");
+				gamer = new Gamer(gamerName, emailAddress, password, fullName, gender, createdAt);
+				gamer.setId(id);
+				String aboutMe = rs.getString("aboutMe");
+				;
+				int secretNumber = rs.getInt("secretNumber");
+				String aboutSecretNumber = rs.getString("aboutSecretNumber");
+				Date lastModifiedAt = rs.getDate("lastModifiedAt");
+				gamer.setAboutMe(aboutMe);
+				gamer.setSecretNumber(secretNumber);
+				gamer.setAboutSecretNumber(aboutSecretNumber);
+				gamer.setLastModifiedAt(lastModifiedAt);
 
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return gamer;
+			} else {
+				System.out.println("No record found");
 			}
+			statement.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return gamer;
+	}
 
 	// titin: getOnlineGamers
 	public List<GamerLog> getOnlineGamers(Gamer gm) {
@@ -181,11 +178,8 @@ public class DatabaseService {
 			gamer.put("createdAt", data.get(i).getGamer().getCreatedAt().toString());
 
 			res.put("gamer", gamer);
-
-			// System.out.println(data.get(i).getGamer().getGamerName());
 			res.put("sessionId", data.get(i).getSessionId());
 			res.put("loginAt", data.get(i).getLoginAt().toString());
-			// res.put("logoutAt", data.get(i).getLogoutAt().toString());
 			res.put("activeStatus", "" + data.get(i).getActiveStatus());
 
 			results[i] = res;
@@ -245,83 +239,71 @@ public class DatabaseService {
 			statement.close();
 
 			gamer = new Gamer(retInt, gamerName, emailAddress, password, fullName, gender, createdAt);
-			
-			/*String aboutMe = rs.getString("aboutMe");;
-			int secretNumber = rs.getInt("secretNumber");
-			String aboutSecretNumber =   rs.getString("aboutSecretNumber");
-			Date lastModifiedAt = rs.getDate("lastModifiedAt");*/
+
 			gamer.setAboutMe("");
 			gamer.setSecretNumber(0);
 			gamer.setAboutSecretNumber("");
-			//gamer.setLastModifiedAt(lastModifiedAt);
 		} catch (SQLException ex) {
 			System.err.println("SQLQueryException: " + ex.getMessage());
 		}
 
 		return gamer;
-		// return retInt;
 	}
 	
 	//titin: update gamer Profile
-			public void updateGamerProfile(Gamer gamer,String gamerName, String emailAddress, String fullName, 
-					String gender, String aboutMe, String secretNumber, String aboutSecretNumber) {
-				try {
-					
-					QUERY = "UPDATE tb_user "
-							+ "SET gamerName = '"+gamerName+"' " //1
-							+ ", emailAddress = '"+emailAddress+"' " //2
-							+ ", fullName =  '"+fullName+"' " //3
-							+ ", gender =  '"+gender+"' " //3
-							+ ", aboutMe = '"+aboutMe+"' " //5
-							+ ", secretNumber = '"+secretNumber+"' " //6
-							+ ", aboutSecretNumber = '"+aboutSecretNumber+"' " //7
-							+ ", lastModifiedAt = '"+AppHelper.getDateNow()+"' "//10
-							+ " WHERE id = '"+gamer.getId()+"' "; //12
-					
-					System.out.println("QUERY: "+QUERY);
-					statement = conn.createStatement();
-					statement.executeUpdate(QUERY);
-					System.out.println("DONE: "+QUERY);
-					statement.close();
-				} catch (SQLException ex) {
-					System.err.println("SQLQueryException: " + ex.getMessage());
-				}
-				
-				
-			}
+	public void updateGamerProfile(Gamer gamer,String gamerName, String emailAddress, String fullName, 
+			String gender, String aboutMe, String secretNumber, String aboutSecretNumber) {
+		try {
 			
-			//titin: update profile image
-			public void updateImageProfile(Gamer gamer, String imagePath) throws FileNotFoundException {
-				try {
-					/*String strpath= imageName;
-					String filepath=strpath.substring(strpath.lastIndexOf("\\")+1);
-					File imgfile = new File(strpath);*/
-					File imageFile =  new File(imagePath); 
-					FileInputStream fin = new FileInputStream(imageFile);
-					
-					QUERY = "UPDATE tb_user "
-							+ "SET imageFile = ? " //1					
-							+ ", imagePath = ? " //2
-							+ ", imageFileLength = ? " //3
-							//+ ", lastModifiedAt = ? "//4
-							+ "WHERE id = ? "; //5 4
-					
-					PreparedStatement pre = conn.prepareStatement(QUERY);
-					pre.setBinaryStream(1,fin,(int)imageFile.length());
-					pre.setString(2,imagePath);
-					pre.setLong(3,imageFile.length());
-					pre.setInt(4, gamer.getId());//
-					pre.executeUpdate();
-					pre.close();
-				} catch (SQLException ex) {
-					System.err.println("SQLQueryException: " + ex.getMessage());
-				}
-				
-				
-			}
+			QUERY = "UPDATE tb_user "
+					+ "SET gamerName = '"+gamerName+"' " //1
+					+ ", emailAddress = '"+emailAddress+"' " //2
+					+ ", fullName =  '"+fullName+"' " //3
+					+ ", gender =  '"+gender+"' " //3
+					+ ", aboutMe = '"+aboutMe+"' " //5
+					+ ", secretNumber = '"+secretNumber+"' " //6
+					+ ", aboutSecretNumber = '"+aboutSecretNumber+"' " //7
+					+ ", lastModifiedAt = '"+AppHelper.getDateNow()+"' "//10
+					+ " WHERE id = '"+gamer.getId()+"' "; //12
+			
+			System.out.println("QUERY: "+QUERY);
+			statement = conn.createStatement();
+			statement.executeUpdate(QUERY);
+			System.out.println("DONE: "+QUERY);
+			statement.close();
+		} catch (SQLException ex) {
+			System.err.println("SQLQueryException: " + ex.getMessage());
+		}
+	}
+			
+	//titin: update profile image
+	public void updateImageProfile(Gamer gamer, String imagePath) throws FileNotFoundException {
+		try {
+			File imageFile =  new File(imagePath); 
+			FileInputStream fin = new FileInputStream(imageFile);
+			
+			QUERY = "UPDATE tb_user "
+					+ "SET imageFile = ? " //1					
+					+ ", imagePath = ? " //2
+					+ ", imageFileLength = ? " //3
+					//+ ", lastModifiedAt = ? "//4
+					+ "WHERE id = ? "; //5 4
+			
+			PreparedStatement pre = conn.prepareStatement(QUERY);
+			pre.setBinaryStream(1,fin,(int)imageFile.length());
+			pre.setString(2,imagePath);
+			pre.setLong(3,imageFile.length());
+			pre.setInt(4, gamer.getId());//
+			pre.executeUpdate();
+			pre.close();
+		} catch (SQLException ex) {
+			System.err.println("SQLQueryException: " + ex.getMessage());
+		}
+	}
 
-	// end of titins
+// end of titins
 
+	
 			
 //By Romie - Start
 // Get Gamer Login Details to play game with player2 - retrieve opponent's details
@@ -539,4 +521,5 @@ public class DatabaseService {
 		return jsonArray;
 	}
 
+	//End Romie
 }
