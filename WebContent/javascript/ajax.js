@@ -62,7 +62,7 @@ $(function() {
 			$("#yourSN").html("<b>"+$("#secretHidden").val()+"</b>");
 		}
 
-		if (counter > 6) {
+		if (counter > 10) {
 			$("<div class='alert alert-danger'>")
 					.html(
 							"<strong>Sorry, you have reached the maximum attempt. You Fail ! </strong>")
