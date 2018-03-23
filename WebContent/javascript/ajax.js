@@ -1,21 +1,22 @@
 // Written by Romie on - 19th March for Game Services calls
 
-var counter = 0;
+"use strict";
+var counter = 0;				//A counter to check how many moves done by user.
 
 $(function() {
-	// Written by Romie on - 19th March - to check the number
-	$(".btnActiveGamer").click(getPlayer); // titin: for first load , maybe need it
-	$(document).on('click', ".btnActiveGamer", getPlayer); // titin: after ajax
-	// reload and update activeGamers list
-
-	console.log("I am here!");
+	
+	// Written by Romie on - 19th March - 
+	
+	// Updated by Titin to load online users every 2 seconds. 
+	$(".btnActiveGamer").click(getPlayer); 						// titin: for first load , maybe need it
+	$(document).on('click', ".btnActiveGamer", getPlayer); 		// titin: after ajax  reload and update activeGamers list
 	$("#playgame").hide();
 	$("#tableAdd").hide();
+	
+	// Pass the user chosen number and action to Servlet
 	$("#btnSubmit").click(function() {
 		var myGuess = $("#myGuess").val();
 		var btnValue = $("#btnSubmit").val();
-		// var digitRegex = /(?:([0-9])(?!.*\\1)){4}/;
-		// if(btnValue.match(digitRegex)){
 		$.ajax({
 			url : "GameSolver",
 			data : {
@@ -27,13 +28,9 @@ $(function() {
 			success : winner,
 			fail : looser
 		})
-		/*
-		 * } else{ $("<div class='alert alert-warning'>") .html("<strong>Please
-		 * enter 4 different digits. </strong>") .appendTo("#winner");
-		 * $("#btnSubmit").attr("disabled",false); }
-		 */
 	});
 
+	// Written by Romie on - 19th March - to check the number
 	function winner(response) {
 		console.log(response);
 		if (response != undefined) {
@@ -84,7 +81,9 @@ $(function() {
 		$("#btnSubmit").attr("disabled", false);
 		$("#yourSN").html("<b>"+$("#secretHidden").val()+"</b>");
 	}
-	// Written by Romie on - 22nd March - To reset
+	
+	
+	// Written by Romie on - 22nd March - To control reset button
 	$('#btnReset').on('click', function() {
 		 $('input[type=text]').each(function(){
 		     $(this).val('');
@@ -95,24 +94,20 @@ $(function() {
 			$("#winner").empty();
 			counter = 0;
 	});
-
-
+	
+	// Written By Romie on 20th March - for new button click
 	$("#btnNew").click(function() {
 		$("#activeGamers").show();
-		
 		$(".tableAdd").hide();
 		$(".toBeAdd").hide();
 		$("#winner").hide();
 	});
 
 	
-	// Retrieve Opponent's details
-	// console.log("Ready to retrieve ");
+	// // Written By Romie on 20th March - retrive opponents details
+	console.log("Ready to retrieve ");
 	function getPlayer() {
-		// alert("HAI: "+this.id);
-		// console.log("Ready to retrieve ");
-		var opponentId = this.id; // titin: get gamerId
-		// //$("#opponentId").val();
+		var opponentId = this.id; 					// titin: get gamerId
 		console.log("opponentId = " + opponentId);
 		$.ajax({
 			url : "GameSolver",
@@ -129,7 +124,7 @@ $(function() {
 		var opponentId = $("#opponentId").val();
 
 	}
-
+	
 	function retrieveOpponent(opponentDetails) {
 		var data = JSON.parse(opponentDetails);
 		console.log(data);
@@ -150,7 +145,7 @@ $(function() {
 		console.log("Error");
 	}
 
-	// Start play a game
+	// Written By Romie on 21th March - to start to play a game
 	$("#btnPlay").click(function() {
 		var secretNo = $("#secretNo").val();
 		$.ajax({
@@ -182,50 +177,46 @@ $(function() {
 		console.log("We are here....");
 		$.ajax({
 			"url" : "welcome",
-			// "data": {"city":$("#city").val()},
 			"type" : "GET",
 			"success" : showResult,
 			"error" : ajaxFailure
 		});
 	}
 	
-	
-	
 	function showResult(data) {
-		// alert ('HAI SUCCESS');
 		console.log(data);
 		$("#activeGamers").html('');
 		$
-				.each(
-						data,
-						function(index, value) {
-							console.log("" + data[index].gamer.id);
-							$(
-									"<div class='col-sm-12'> "
-											+ " <div class='col-sm-2'> "
-											+ " <input type='hidden' min='0' step='1' name='opponentId' "
-											+ " maxlength='4' class='form-control' id='opponentId' "
-											+ " placeholder='Enter opponent's Id' required='required' "
-											+ " value='"
-											+ data[index].gamer.id
-											+ "' /> "
-											+ " <button type='submit' id='"
-											+ data[index].gamer.id
-											+ "' class='btn btn-default btnActiveGamer'> "
-											+ " " + data[index].gamer.gamerName
-											+ "</button> " +
+			.each(
+				data,
+				function(index, value) {
+				console.log("" + data[index].gamer.id);
+				$(
+				"<div class='col-sm-12'> "
+						+ " <div class='col-sm-2'> "
+						+ " <input type='hidden' min='0' step='1' name='opponentId' "
+						+ " maxlength='4' class='form-control' id='opponentId' "
+						+ " placeholder='Enter opponent's Id' required='required' "
+						+ " value='"
+						+ data[index].gamer.id
+						+ "' /> "
+						+ " <button type='submit' id='"
+						+ data[index].gamer.id
+						+ "' class='btn btn-default btnActiveGamer'> "
+						+ " " + data[index].gamer.gamerName
+						+ "</button> " +
 
-											" </div> "
-											+ " <div class='col-sm-10'> "
-											+ "<div class=well></div>"
-											+ " </div> " + " </div>").appendTo(
-									"#activeGamers")
+						" </div> "
+						+ " <div class='col-sm-10'> "
+						+ "<div class=well></div>"
+						+ " </div> " + " </div>").appendTo(
+				"#activeGamers")
 
-						});
+				});
 	}
+	
 	function ajaxFailure(xhr, status, exception) {
 		console.log(xhr, status, exception);
-		// alert('fail' + xhr);
 	}
 
 	//End titin

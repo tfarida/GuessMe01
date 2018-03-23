@@ -1,32 +1,22 @@
-/**
- * 
- */
-package wap.guessme.models;
-
-
-import java.util.ArrayList;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.IntStream;
-
-import org.codehaus.jettison.json.JSONException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * @author romiezaw
  *
  */
 
-//Written By Romie  - March 19 - March 21 (Service class for Game Control)
+package wap.guessme.models;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+//Written by Romie on March 19 - 22 - Game Service class for game control
+
 public class GameService {
 	private int numberToGuess;
 	private int secretNo;
@@ -51,14 +41,13 @@ public class GameService {
 
 	public void setNumberToGuess(int numberToGuess) {
 		this.numberToGuess = numberToGuess;
-		// convert to int[] - while setting the number.
-		int number = numberToGuess;
-		secretArr = new int[4]; // Convert the number into int[]
-		StringBuilder builder = new StringBuilder(); // to allow leading zeros
+		int number = numberToGuess;						// convert to int[] - while setting the number.
+		secretArr = new int[4];				 			// Convert the number into int[]
+		StringBuilder builder = new StringBuilder(); 	// to allow leading zeros such as 0987
 		for (int i = 0; i < 4; i++) {
 			int divider = (int) (Math.pow(10, (3 - i)));
 			secretArr[i] = (int) number / divider;
-			System.out.println("no : " + secretArr[i]);
+			System.out.println("Secret No : " + secretArr[i]);
 			builder.append(secretArr[i]);
 			number = number % divider;
 		}
@@ -72,7 +61,6 @@ public class GameService {
 		this.secretNo = secretNo;
 	}
 
-	@SuppressWarnings("unchecked")
 	public JSONObject solveIt() {
 
 		int[] numberArr = secretArr;
@@ -82,9 +70,9 @@ public class GameService {
 		int positionCounter = 0;
 		int number = myGuess;
 
-		int[] userSelectedDigits = new int[4]; // Convert the number into int[]
-		List<Integer> matchingArr = new ArrayList<>(); // int[] for matching pair
-		StringBuilder builder = new StringBuilder(); // to allow leading zeros
+		int[] userSelectedDigits = new int[4]; 				// Convert the number into int[]
+		List<Integer> matchingArr = new ArrayList<>(); 		// int[] for matching pair
+		StringBuilder builder = new StringBuilder(); 		// to allow leading zeros
 		for (int i = 0; i < 4; i++) {
 			int divider = (int) (Math.pow(10, (3 - i)));
 			userSelectedDigits[i] = (int) number / divider;
@@ -92,12 +80,11 @@ public class GameService {
 			number = number % divider;
 		}
 
-		int index = -1; // Counter to control the loop and get the position of digit
+		int index = -1; 										// Counter to control the loop and get the position of digit
 		for (int digit : userSelectedDigits) {
 			index++;
-			boolean found = IntStream.of(numberArr).anyMatch(savedDigit -> savedDigit == digit); // Find a digit in
-																									// original number
-			if (found) { // If found, check the position
+			boolean found = IntStream.of(numberArr).anyMatch(savedDigit -> savedDigit == digit); // Find a digit																					// original number
+			if (found) { 									// If found, check the position
 				totalDigitCounter++;
 				for (int j = 0; j < numberArr.length; j++) {
 					if (digit == numberArr[j]) {
@@ -147,15 +134,16 @@ public class GameService {
 		int range = max - min + 1;
 		int number = 0;
 		Matcher matcher;
+		//Regex to check if each digits are unique
 		Pattern pattern = java.util.regex.Pattern.compile("(?:([0-9])(?!.*\\1)){4}");
-		
+		//Eg : if generated no is 9882 , regenerate again until it is unique
 		do {
 			number = (int) (Math.random() * range) + min;
 			System.out.println(number);
 			matcher = pattern.matcher(String.valueOf(number));
 			System.out.println(matcher.matches());
 			
-		}while(!matcher.matches());
+		}while(!matcher.matches());			//if not matching, generate again
 		
 		return number;
 	}
